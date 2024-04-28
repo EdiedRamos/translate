@@ -1,5 +1,11 @@
+import { Translate } from "./pages";
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <Translate />
+    </div>
+  );
 };
 
 export default App;
