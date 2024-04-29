@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 24px 0 24px;
+}
+
+@media (width >= 768px) {
+  .container {
+    margin: 0 72px 0 72px;
+  }
+}
