@@ -1,6 +1,10 @@
 import "./Translator.scss";
-import { CardLayout } from "@/components";
+import { CardLayout, Languages } from "@/components";
 
 export const Translator = () => {
-  return <CardLayout className="translator">Translator</CardLayout>;
+  return (
+    <CardLayout className="translator">
+      <Languages />
+    </CardLayout>
+  );
 };
