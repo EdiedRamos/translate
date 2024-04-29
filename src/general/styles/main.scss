@@ -8,13 +8,12 @@ body {
   background-size: fill;
   background-repeat: no-repeat;
   background-color: $dark;
-  min-height: 100vh;
   font-family: $font-family;
 }
 
 @media (width >= 991px) {
   body {
     background-image: url("/src/general/assets/hero_img-desktop.jpg");
-    background-size: contain;
+    background-size: cover;
   }
 }
