@@ -10,9 +10,16 @@ const SELECT_OPTIONS = [
   { id: "3", value: "Portuguese" },
 ];
 
-export const Languages = () => {
+interface Props {
+  withDetectionLanguage?: boolean;
+}
+
+export const Languages = ({ withDetectionLanguage = false }: Props) => {
   return (
     <div className="languages languages-container">
+      {withDetectionLanguage && (
+        <LanguageButton>Detect Language</LanguageButton>
+      )}
       {INITIAL_OPTIONS.map(({ id, value }) => (
         <LanguageButton
           // className={ === 1 ? "language-button--active" : ""}
