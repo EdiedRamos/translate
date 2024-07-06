@@ -1,3 +1,5 @@
+import "./Languages.scss";
+
 import { LanguageButton } from "../LanguageButton/LanguageButton";
 
 const INITIAL_OPTIONS = [

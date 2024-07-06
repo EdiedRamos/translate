@@ -1,19 +1,19 @@
 @import "/src/general/styles/index.scss";
 
 .language-button {
-    background-color: inherit;
-    border: none;
-    color: $gray-200;
-    border-radius: 10px;
-    font-size: 14px;
-    padding: 8px;
+  border: none;
+  border-radius: 10px;
+  background-color: inherit;
+  padding: 8px;
+  color: $gray-200;
+  font-size: 14px;
 
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .language-button--active {
-    background-color: $gray-300;
-    color: $gray-100;
+  background-color: $gray-300;
+  color: $gray-100;
 }

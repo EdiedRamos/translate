@@ -1,0 +1,20 @@
+@import "/src/general/styles/colors";
+
+.languages {
+  &-container {
+    display: flex;
+    gap: 12px;
+
+    select {
+      border: none;
+      border-radius: 8px;
+      background-color: $gray-300-cc;
+      padding: 5px;
+      color: $gray-200;
+
+      option {
+        color: $light;
+      }
+    }
+  }
+}
