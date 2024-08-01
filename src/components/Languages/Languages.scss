@@ -3,6 +3,7 @@
 .languages {
   &-container {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
 
     select {
