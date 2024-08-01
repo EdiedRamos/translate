@@ -8,8 +8,8 @@ const INITIAL_OPTIONS = [
 ];
 const SELECT_OPTIONS = [
   { id: "3", value: "Spanish" },
-  { id: "3", value: "Italian" },
-  { id: "3", value: "Portuguese" },
+  { id: "4", value: "Italian" },
+  { id: "5", value: "Portuguese" },
 ];
 
 interface Props {
