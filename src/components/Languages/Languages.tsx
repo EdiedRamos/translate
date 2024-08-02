@@ -11,7 +11,6 @@ const DETECT_LANGUAGE = {
 
 const INITIAL_OPTIONS = [
   { id: "8a9b9cfc-860a-484c-aa79-583071500494", value: "English" },
-  { id: "9003d0b9-b9e8-483e-aae7-5839188c17ff", value: "English" },
   { id: "0981618e-eac0-4f00-ba5a-c0a5896e3f93", value: "French" },
 ];
 const SELECT_OPTIONS = [
