@@ -29,7 +29,7 @@ export const Languages = ({
   withSwapLanguage = false,
 }: Props) => {
   const [selected, setSelected] = useState<string>(
-    withDetectionLanguage ? DETECT_LANGUAGE.id : INITIAL_OPTIONS[0]?.id
+    INITIAL_OPTIONS[withDetectionLanguage ? 0 : 1]?.id
   );
 
   return (
