@@ -1,6 +1,7 @@
 import "./Languages.scss";
 
 import { LanguageButton } from "../LanguageButton/LanguageButton";
+import { SwapIcon } from "@/general/assets";
 import { useState } from "react";
 
 const DETECT_LANGUAGE = {
@@ -21,55 +22,71 @@ const SELECT_OPTIONS = [
 
 interface Props {
   withDetectionLanguage?: boolean;
+  withSwapLanguage?: boolean;
 }
 
-export const Languages = ({ withDetectionLanguage = false }: Props) => {
+export const Languages = ({
+  withDetectionLanguage = false,
+  withSwapLanguage = false,
+}: Props) => {
   const [selected, setSelected] = useState<string>(
     withDetectionLanguage ? DETECT_LANGUAGE.id : INITIAL_OPTIONS[0]?.id
   );
 
   return (
-    <div className="languages languages-container">
-      {withDetectionLanguage && (
-        <LanguageButton
-          onClick={() => setSelected(DETECT_LANGUAGE.id)}
-          className={
-            DETECT_LANGUAGE.id === selected ? "language-button--active" : ""
-          }
-        >
-          {DETECT_LANGUAGE.value}
-        </LanguageButton>
-      )}
-      {INITIAL_OPTIONS.map(({ id, value }) => (
-        <LanguageButton
-          onClick={() => setSelected(id)}
-          className={id === selected ? "language-button--active" : ""}
-          key={id}
-        >
-          {value}
-        </LanguageButton>
-      ))}
-      <select
-        className={
-          SELECT_OPTIONS.some((option) => option.id === selected)
-            ? "language-button--active"
-            : ""
-        }
-        onChange={(event) => setSelected(event.target.value)}
-      >
-        <option
-          value={
-            withDetectionLanguage ? DETECT_LANGUAGE.id : INITIAL_OPTIONS[0]?.id
-          }
-        >
-          Other language
-        </option>
-        {SELECT_OPTIONS.map(({ id, value }) => (
-          <option selected={selected === id} key={id} value={id}>
+    <section className="languages-control">
+      <div className="languages languages-container">
+        {withDetectionLanguage && (
+          <LanguageButton
+            onClick={() => setSelected(DETECT_LANGUAGE.id)}
+            className={
+              DETECT_LANGUAGE.id === selected ? "language-button--active" : ""
+            }
+          >
+            {DETECT_LANGUAGE.value}
+          </LanguageButton>
+        )}
+        {INITIAL_OPTIONS.map(({ id, value }) => (
+          <LanguageButton
+            onClick={() => setSelected(id)}
+            className={id === selected ? "language-button--active" : ""}
+            key={id}
+          >
             {value}
-          </option>
+          </LanguageButton>
         ))}
-      </select>
-    </div>
+        <select
+          className={
+            SELECT_OPTIONS.some((option) => option.id === selected)
+              ? "language-button--active"
+              : ""
+          }
+          value={selected}
+          onChange={(event) => setSelected(event.target.value)}
+        >
+          <option
+            value={
+              withDetectionLanguage
+                ? DETECT_LANGUAGE.id
+                : INITIAL_OPTIONS[0]?.id
+            }
+          >
+            Other language
+          </option>
+          {SELECT_OPTIONS.map(({ id, value }) => (
+            <option key={id} value={id}>
+              {value}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        {withSwapLanguage && (
+          <button className="swap-button">
+            <SwapIcon />
+          </button>
+        )}
+      </div>
+    </section>
   );
 };
