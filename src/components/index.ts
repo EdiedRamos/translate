@@ -1,7 +1,9 @@
-export { CardLayout } from "./CardLayout/CardLayout";
-export { Container } from "./Container/Container";
-export { Languages } from "./Languages/Languages";
-export { Logo } from "./Logo/Logo";
-export { Result } from "./Result/Result";
-export { Translator } from "./Translator/Translator";
+export * from "./CardLayout/CardLayout";
+export * from "./Container/Container";
+export * from "./Controls/Controls";
+export * from "./Languages/Languages";
+export * from "./Logo/Logo";
+export * from "./Result/Result";
 export * from "./Text/Text";
+export * from "./Translator/Translator";
+export * from "./IconButton/IconButton";
