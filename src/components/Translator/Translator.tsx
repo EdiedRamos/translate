@@ -1,6 +1,6 @@
 import "./Translator.scss";
 
-import { CardLayout, Languages } from "@/components";
+import { CardLayout, Languages, Text } from "@/components";
 
 import { useTranslate } from "@/context/translate";
 
@@ -14,6 +14,7 @@ export const Translator = () => {
         language={currentLanguage}
         updateLanguage={updateCurrentLanguage}
       />
+      <Text />
     </CardLayout>
   );
 };
