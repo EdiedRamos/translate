@@ -1,6 +1,6 @@
 import "./Result.scss";
 
-import { CardLayout, Languages } from "@/components";
+import { CardLayout, Controls, Languages, Text } from "@/components";
 
 import { useTranslate } from "@/context/translate";
 
@@ -15,6 +15,8 @@ export const Result = () => {
         updateLanguage={updateTargetLanguage}
         onSwap={makeSwap}
       />
+      <Text isDisable />
+      <Controls />
     </CardLayout>
   );
 };

@@ -7,20 +7,6 @@
   align-items: center;
 }
 
-.swap-button {
-  display: flex;
-  border: none;
-  border: 2px solid $gray-200;
-  border-radius: 8px;
-  background-color: transparent;
-  padding: 6px;
-
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
-}
-
 .languages {
   &-container {
     display: flex;

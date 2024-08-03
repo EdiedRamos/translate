@@ -1,5 +1,6 @@
 import "./Languages.scss";
 
+import { IconButton } from "../IconButton/IconButton";
 import { LanguageButton } from "../LanguageButton/LanguageButton";
 import { SwapIcon } from "@/general/assets";
 import { useEffect } from "react";
@@ -88,9 +89,7 @@ export const Languages = ({
       </div>
       <div>
         {withSwapLanguage && (
-          <button onClick={onSwap} className="swap-button">
-            <SwapIcon />
-          </button>
+          <IconButton icon={<SwapIcon />} onClick={onSwap} />
         )}
       </div>
     </section>
