@@ -2,7 +2,7 @@ import "./Languages.scss";
 
 import { LanguageButton } from "../LanguageButton/LanguageButton";
 import { SwapIcon } from "@/general/assets";
-import { useState } from "react";
+import { useEffect } from "react";
 
 const DETECT_LANGUAGE = {
   id: "6bb226c9-f565-4a75-b332-d6f1973b27d7",
@@ -22,24 +22,31 @@ const SELECT_OPTIONS = [
 interface Props {
   withDetectionLanguage?: boolean;
   withSwapLanguage?: boolean;
+  language: string;
+  updateLanguage: (language: string) => void;
+  onSwap?: () => void;
 }
 
 export const Languages = ({
   withDetectionLanguage = false,
   withSwapLanguage = false,
+  onSwap = () => {},
+  language,
+  updateLanguage,
 }: Props) => {
-  const [selected, setSelected] = useState<string>(
-    INITIAL_OPTIONS[withDetectionLanguage ? 0 : 1]?.id
-  );
+  useEffect(() => {
+    updateLanguage(INITIAL_OPTIONS[withDetectionLanguage ? 0 : 1]?.id);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <section className="languages-control">
       <div className="languages languages-container">
         {withDetectionLanguage && (
           <LanguageButton
-            onClick={() => setSelected(DETECT_LANGUAGE.id)}
+            onClick={() => updateLanguage(DETECT_LANGUAGE.id)}
             className={
-              DETECT_LANGUAGE.id === selected ? "language-button--active" : ""
+              DETECT_LANGUAGE.id === language ? "language-button--active" : ""
             }
           >
             {DETECT_LANGUAGE.value}
@@ -47,8 +54,8 @@ export const Languages = ({
         )}
         {INITIAL_OPTIONS.map(({ id, value }) => (
           <LanguageButton
-            onClick={() => setSelected(id)}
-            className={id === selected ? "language-button--active" : ""}
+            onClick={() => updateLanguage(id)}
+            className={id === language ? "language-button--active" : ""}
             key={id}
           >
             {value}
@@ -56,12 +63,12 @@ export const Languages = ({
         ))}
         <select
           className={
-            SELECT_OPTIONS.some((option) => option.id === selected)
+            SELECT_OPTIONS.some((option) => option.id === language)
               ? "language-button--active"
               : ""
           }
-          value={selected}
-          onChange={(event) => setSelected(event.target.value)}
+          value={language}
+          onChange={(event) => updateLanguage(event.target.value)}
         >
           <option
             value={
@@ -81,7 +88,7 @@ export const Languages = ({
       </div>
       <div>
         {withSwapLanguage && (
-          <button className="swap-button">
+          <button onClick={onSwap} className="swap-button">
             <SwapIcon />
           </button>
         )}
