@@ -8,7 +8,7 @@ interface Props {
 
 export const Text = ({ isDisable = false }: Props) => {
   const [text, setText] = useState<string>(
-    isDisable ? "" : "Hello, how are you?"
+    isDisable ? "Bonjour, comment allez-vous?" : "Hello, how are you?"
   );
 
   return (
