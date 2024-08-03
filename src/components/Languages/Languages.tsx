@@ -70,15 +70,7 @@ export const Languages = ({
           value={language}
           onChange={(event) => updateLanguage(event.target.value)}
         >
-          <option
-            value={
-              withDetectionLanguage
-                ? DETECT_LANGUAGE.id
-                : INITIAL_OPTIONS[0]?.id
-            }
-          >
-            Other language
-          </option>
+          <option>Other language</option>
           {SELECT_OPTIONS.map(({ id, value }) => (
             <option key={id} value={id}>
               {value}
