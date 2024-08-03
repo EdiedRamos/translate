@@ -19,6 +19,14 @@ const SELECT_OPTIONS = [
   { id: "71ff27df-433b-4a7b-9903-54dff6107653", value: "Portuguese" },
 ];
 
+function getDefaultLanguage(withDetectionLanguage: boolean) {
+  return withDetectionLanguage ? DETECT_LANGUAGE.id : INITIAL_OPTIONS[0]?.id;
+}
+
+function languageIsInSelect(language: string) {
+  return SELECT_OPTIONS.some((option) => option.id === language);
+}
+
 interface Props {
   withDetectionLanguage?: boolean;
   withSwapLanguage?: boolean;
@@ -63,20 +71,12 @@ export const Languages = ({
         ))}
         <select
           className={
-            SELECT_OPTIONS.some((option) => option.id === language)
-              ? "language-button--active"
-              : ""
+            languageIsInSelect(language) ? "language-button--active" : ""
           }
           value={language}
           onChange={(event) => updateLanguage(event.target.value)}
         >
-          <option
-            value={
-              withDetectionLanguage
-                ? DETECT_LANGUAGE.id
-                : INITIAL_OPTIONS[0]?.id
-            }
-          >
+          <option value={getDefaultLanguage(withDetectionLanguage)}>
             Other language
           </option>
           {SELECT_OPTIONS.map(({ id, value }) => (
