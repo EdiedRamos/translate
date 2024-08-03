@@ -1,12 +1,16 @@
 import { Container, Logo, Result, Translator } from "@/components";
 
+import { TranslateProvider } from "@/context/translate";
+
 export const Translate = () => {
   return (
     <>
       <Logo />
       <Container>
-        <Translator />
-        <Result />
+        <TranslateProvider>
+          <Translator />
+          <Result />
+        </TranslateProvider>
       </Container>
     </>
   );
