@@ -15,8 +15,10 @@ export const Result = () => {
         updateLanguage={updateTargetLanguage}
         onSwap={makeSwap}
       />
-      <Text isDisable />
-      <Controls />
+      <div className="result__group">
+        <Text isDisable />
+        <Controls />
+      </div>
     </CardLayout>
   );
 };

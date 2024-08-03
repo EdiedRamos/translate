@@ -10,7 +10,11 @@ interface Props {
 
 export const Controls = ({ withTranslate = false }: Props) => {
   return (
-    <section className="controls controls__container">
+    <section
+      className={`controls controls__container ${
+        withTranslate ? "" : "controls__container--custom-margin"
+      }`}
+    >
       <div className="controls__group">
         <IconButton icon={<SoundIcon />} onClick={() => {}} />
         <IconButton icon={<CopyIcon />} onClick={() => {}} />

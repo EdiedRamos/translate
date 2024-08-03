@@ -1,8 +1,10 @@
 @import "/src/general/styles/index.scss";
 
 .result {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   background-color: $gray-200-cc;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
 }
