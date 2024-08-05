@@ -5,7 +5,8 @@ import { CardLayout, Controls, Languages, Text } from "@/components";
 import { useTranslate } from "@/context/translate";
 
 export const Result = () => {
-  const { targetLanguage, updateTargetLanguage, makeSwap } = useTranslate();
+  const { targetLanguage, updateTargetLanguage, makeSwap, translatedText } =
+    useTranslate();
 
   return (
     <CardLayout className="result">
@@ -16,8 +17,8 @@ export const Result = () => {
         onSwap={makeSwap}
       />
       <div className="result__group">
-        <Text isDisable />
-        <Controls />
+        <Text isDisable value={translatedText} />
+        <Controls onCopy={() => alert("copy in progress")} />
       </div>
     </CardLayout>
   );

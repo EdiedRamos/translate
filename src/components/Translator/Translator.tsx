@@ -5,7 +5,12 @@ import { CardLayout, Controls, Languages, Text } from "@/components";
 import { useTranslate } from "@/context/translate";
 
 export const Translator = () => {
-  const { currentLanguage, updateCurrentLanguage } = useTranslate();
+  const {
+    currentLanguage,
+    updateCurrentLanguage,
+    currentText,
+    updateCurrentText,
+  } = useTranslate();
 
   return (
     <CardLayout className="translator">
@@ -14,8 +19,8 @@ export const Translator = () => {
         language={currentLanguage}
         updateLanguage={updateCurrentLanguage}
       />
-      <Text />
-      <Controls withTranslate />
+      <Text value={currentText} onChangeValue={updateCurrentText} />
+      <Controls withTranslate onCopy={() => alert("copy in progress")} />
     </CardLayout>
   );
 };

@@ -6,9 +6,10 @@ import { IconButton } from "../IconButton/IconButton";
 
 interface Props {
   withTranslate?: boolean;
+  onCopy: () => void;
 }
 
-export const Controls = ({ withTranslate = false }: Props) => {
+export const Controls = ({ withTranslate = false, onCopy }: Props) => {
   return (
     <section
       className={`controls controls__container ${
@@ -17,7 +18,7 @@ export const Controls = ({ withTranslate = false }: Props) => {
     >
       <div className="controls__group">
         <IconButton icon={<SoundIcon />} onClick={() => {}} />
-        <IconButton icon={<CopyIcon />} onClick={() => {}} />
+        <IconButton icon={<CopyIcon />} onClick={onCopy} />
       </div>
       {withTranslate && (
         <button className="controls__translate">

@@ -1,5 +1,6 @@
+import React, { useState } from "react";
+
 import { TranslateContext } from "./TranslateContext";
-import { useState } from "react";
 
 interface TranslateProviderProps {
   children: React.ReactNode;
@@ -8,6 +9,17 @@ interface TranslateProviderProps {
 export const TranslateProvider = ({ children }: TranslateProviderProps) => {
   const [currentLanguage, setCurrentLanguage] = useState<string>("");
   const [targetLanguage, setTargetLanguage] = useState<string>("");
+
+  const [currentText, setCurrentText] = useState<string>("Hello, how are you?");
+
+  // TODO: Remove disable below
+  // eslint-disable-next-line
+  const [translatedText, setTranslatedText] = useState<string>(
+    "Bonjour, comment allez-vous?"
+  );
+
+  const updateCurrentText = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
+    setCurrentText(event.target.value.substring(0, 500));
 
   const makeSwap = () => {
     const language = currentLanguage;
@@ -24,11 +36,14 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
   };
 
   const values = {
+    currentText,
+    translatedText,
     currentLanguage,
     targetLanguage,
     makeSwap,
     updateCurrentLanguage,
     updateTargetLanguage,
+    updateCurrentText,
   };
 
   return (
