@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 interface TranslateContextI {
-  currentText: string;
+  translatingText: string;
   translatedText: string;
   currentLanguage: string;
   targetLanguage: string;

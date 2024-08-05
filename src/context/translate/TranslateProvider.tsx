@@ -10,7 +10,9 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
   const [currentLanguage, setCurrentLanguage] = useState<string>("");
   const [targetLanguage, setTargetLanguage] = useState<string>("");
 
-  const [currentText, setCurrentText] = useState<string>("Hello, how are you?");
+  const [translatingText, setTranslatingText] = useState<string>(
+    "Hello, how are you?"
+  );
 
   // TODO: Remove disable below
   // eslint-disable-next-line
@@ -19,7 +21,7 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
   );
 
   const updateCurrentText = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
-    setCurrentText(event.target.value.substring(0, 500));
+    setTranslatingText(event.target.value.substring(0, 500));
 
   const makeSwap = () => {
     const language = currentLanguage;
@@ -36,7 +38,7 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
   };
 
   const values = {
-    currentText,
+    translatingText,
     translatedText,
     currentLanguage,
     targetLanguage,
