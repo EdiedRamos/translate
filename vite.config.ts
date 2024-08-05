@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-
 // @ts-expect-error no types provided
 import { resolve } from "path";
 
@@ -12,4 +11,5 @@ export default defineConfig({
       "@": resolve("./src"),
     },
   },
+  base: "/translate-app",
 });
