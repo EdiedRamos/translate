@@ -67,3 +67,21 @@ export function getLanguageById(id: string): Language | null {
 
   return DETECT_LANGUAGE.id === id ? DETECT_LANGUAGE : null;
 }
+
+export function speakTranslationText(
+  lang: string,
+  text: string,
+  voices: SpeechSynthesisVoice[]
+): void {
+  const language = getLanguageById(lang);
+  if (!language) return;
+  const utterance = new SpeechSynthesisUtterance(text);
+  const voice = voices.find((info) =>
+    info.lang.includes(language.standardName)
+  );
+  if (voice) {
+    utterance.voice = voice;
+  }
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+}

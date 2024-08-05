@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { TranslateContext } from "./TranslateContext";
-
-// import { getLanguageById } from "@/shared/language";
+import { speakTranslationText } from "@/shared/language";
 
 interface TranslateProviderProps {
   children: React.ReactNode;
@@ -11,13 +10,11 @@ interface TranslateProviderProps {
 export const TranslateProvider = ({ children }: TranslateProviderProps) => {
   const [currentLanguage, setCurrentLanguage] = useState<string>("");
   const [targetLanguage, setTargetLanguage] = useState<string>("");
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   const [translatingText, setTranslatingText] = useState<string>(
     "Hello, how are you?"
   );
-
-  // TODO: Remove disable below
-  // eslint-disable-next-line
   const [translatedText, setTranslatedText] = useState<string>(
     "Bonjour, comment allez-vous?"
   );
@@ -44,20 +41,24 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
   };
 
   const playTranslatingText = () => {
-    // const language = getLanguageById(currentLanguage);
-    const utterance = new SpeechSynthesisUtterance(translatingText);
-    speechSynthesis.cancel();
-    speechSynthesis.speak(utterance);
+    speakTranslationText(currentLanguage, translatingText, voices);
   };
 
   const playTranslatedText = () => {
-    // const language = getLanguageById(currentLanguage);
-    const utterance = new SpeechSynthesisUtterance(translatedText);
-    speechSynthesis.cancel();
-    speechSynthesis.speak(utterance);
+    speakTranslationText(targetLanguage, translatedText, voices);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const updateVoices = () => {
+      const availableVoices = speechSynthesis.getVoices();
+      setVoices(availableVoices);
+    };
+    speechSynthesis.onvoiceschanged = updateVoices;
+
+    return () => {
+      speechSynthesis.onvoiceschanged = null;
+    };
+  }, []);
 
   const values = {
     translatingText,
