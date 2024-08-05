@@ -27,6 +27,10 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
     const language = currentLanguage;
     setCurrentLanguage(targetLanguage);
     setTargetLanguage(language);
+
+    const translating = translatingText;
+    setTranslatingText(translatedText);
+    setTranslatedText(translating);
   };
 
   const updateCurrentLanguage = (language: string) => {
