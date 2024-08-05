@@ -2,13 +2,17 @@ import "./Result.scss";
 
 import { CardLayout, Controls, Languages, Text } from "@/components";
 
+import { toast } from "react-toastify";
 import { useTranslate } from "@/context/translate";
 
 export const Result = () => {
   const { targetLanguage, updateTargetLanguage, makeSwap, translatedText } =
     useTranslate();
 
-  const handleCopy = () => navigator.clipboard.writeText(translatedText);
+  const handleCopy = () =>
+    navigator.clipboard
+      .writeText(translatedText)
+      .then(() => toast.success("Copied!!!"));
 
   return (
     <CardLayout className="result">
