@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { getLanguageById, speakTranslationText } from "@/shared/language";
 
 import { TranslateContext } from "./TranslateContext";
 import { TranslateService } from "@/services/translate";
-import { speakTranslationText } from "@/shared/language";
 
 interface TranslateProviderProps {
   children: React.ReactNode;
@@ -26,9 +26,8 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
     setCurrentLanguage(targetLanguage);
     setTargetLanguage(language);
 
-    const translating = translatingText;
     setTranslatingText(translatedText);
-    setTranslatedText(translating);
+    setTranslatedText("");
   };
 
   const updateCurrentLanguage = (language: string) => {
@@ -37,6 +36,7 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
 
   const updateTargetLanguage = (language: string) => {
     setTargetLanguage(language);
+    setTranslatedText("");
   };
 
   const playTranslatingText = () => {
@@ -61,12 +61,25 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
 
   useEffect(() => {
     const id = setTimeout(() => {
-      TranslateService.translate("en", "fr", translatingText).then(
-        (translated) => setTranslatedText(translated)
-      );
+      const current = getLanguageById(currentLanguage);
+      const target = getLanguageById(targetLanguage);
+      if (!current || !target) return;
+      if (current.standardName === "n/a") {
+        setTranslatedText("");
+        return;
+      }
+      if (translatingText.trim().length === 0) {
+        setTranslatedText("");
+        return;
+      }
+      TranslateService.translate(
+        current.standardName,
+        target.standardName,
+        translatingText
+      ).then((translated) => setTranslatedText(translated));
     }, 500);
     return () => clearInterval(id);
-  }, [translatingText]);
+  }, [translatingText, currentLanguage, targetLanguage]);
 
   const values = {
     translatingText,
