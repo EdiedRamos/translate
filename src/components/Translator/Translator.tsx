@@ -12,6 +12,8 @@ export const Translator = () => {
     updateCurrentText,
   } = useTranslate();
 
+  const handleCopy = () => navigator.clipboard.writeText(currentText);
+
   return (
     <CardLayout className="translator">
       <Languages
@@ -20,7 +22,7 @@ export const Translator = () => {
         updateLanguage={updateCurrentLanguage}
       />
       <Text value={currentText} onChangeValue={updateCurrentText} />
-      <Controls withTranslate onCopy={() => alert("copy in progress")} />
+      <Controls withTranslate onCopy={handleCopy} />
     </CardLayout>
   );
 };

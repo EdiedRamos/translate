@@ -8,6 +8,8 @@ export const Result = () => {
   const { targetLanguage, updateTargetLanguage, makeSwap, translatedText } =
     useTranslate();
 
+  const handleCopy = () => navigator.clipboard.writeText(translatedText);
+
   return (
     <CardLayout className="result">
       <Languages
@@ -18,7 +20,7 @@ export const Result = () => {
       />
       <div className="result__group">
         <Text isDisable value={translatedText} />
-        <Controls onCopy={() => alert("copy in progress")} />
+        <Controls onCopy={handleCopy} />
       </div>
     </CardLayout>
   );
