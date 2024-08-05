@@ -64,11 +64,10 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
       const current = getLanguageById(currentLanguage);
       const target = getLanguageById(targetLanguage);
       if (!current || !target) return;
-      if (current.standardName === "n/a") {
-        setTranslatedText("");
-        return;
-      }
-      if (translatingText.trim().length === 0) {
+      if (
+        translatingText.trim().length === 0 ||
+        current.standardName === "n/a"
+      ) {
         setTranslatedText("");
         return;
       }
