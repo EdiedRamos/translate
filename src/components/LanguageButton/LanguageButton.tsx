@@ -1,9 +1,10 @@
-import type { ReactNode, HTMLAttributes } from "react";
 import "./LanguageButton.scss";
+
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 type PropsType = {
   children: ReactNode;
-} & HTMLAttributes<HTMLButtonElement>;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const LanguageButton = ({ children, className, ...rest }: PropsType) => {
   return (
