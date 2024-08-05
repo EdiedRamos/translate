@@ -6,7 +6,7 @@ import { Translate } from "./pages";
 const App = () => {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
       <Translate />
     </>
   );
