@@ -11,5 +11,5 @@ export default defineConfig({
       "@": resolve("./src"),
     },
   },
-  base: "/translate-app",
+  base: "/translate",
 });
