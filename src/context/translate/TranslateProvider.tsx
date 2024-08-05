@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { TranslateContext } from "./TranslateContext";
+import { TranslateService } from "@/services/translate";
 import { speakTranslationText } from "@/shared/language";
 
 interface TranslateProviderProps {
@@ -15,9 +16,7 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
   const [translatingText, setTranslatingText] = useState<string>(
     "Hello, how are you?"
   );
-  const [translatedText, setTranslatedText] = useState<string>(
-    "Bonjour, comment allez-vous?"
-  );
+  const [translatedText, setTranslatedText] = useState<string>("");
 
   const updateCurrentText = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
     setTranslatingText(event.target.value.substring(0, 500));
@@ -59,6 +58,15 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
       speechSynthesis.onvoiceschanged = null;
     };
   }, []);
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      TranslateService.translate("en", "fr", translatingText).then(
+        (translated) => setTranslatedText(translated)
+      );
+    }, 500);
+    return () => clearInterval(id);
+  }, [translatingText]);
 
   const values = {
     translatingText,
