@@ -40,6 +40,7 @@ export const Languages = ({
       <div className="languages languages-container">
         {withDetectionLanguage && (
           <LanguageButton
+            disabled
             onClick={setDetectLanguage}
             className={whenLanguageIsActiveStyles(language, DETECT_LANGUAGE.id)}
           >
