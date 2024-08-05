@@ -6,8 +6,13 @@ import { toast } from "react-toastify";
 import { useTranslate } from "@/context/translate";
 
 export const Result = () => {
-  const { targetLanguage, updateTargetLanguage, makeSwap, translatedText } =
-    useTranslate();
+  const {
+    targetLanguage,
+    updateTargetLanguage,
+    makeSwap,
+    translatedText,
+    playTranslatedText,
+  } = useTranslate();
 
   const handleCopy = () =>
     navigator.clipboard
@@ -24,7 +29,7 @@ export const Result = () => {
       />
       <div className="result__group">
         <Text isDisable value={translatedText} />
-        <Controls onCopy={handleCopy} />
+        <Controls onCopy={handleCopy} onPlay={playTranslatedText} />
       </div>
     </CardLayout>
   );

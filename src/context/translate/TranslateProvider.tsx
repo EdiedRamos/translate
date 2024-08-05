@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { TranslateContext } from "./TranslateContext";
+
+// import { getLanguageById } from "@/shared/language";
 
 interface TranslateProviderProps {
   children: React.ReactNode;
@@ -41,6 +43,22 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
     setTargetLanguage(language);
   };
 
+  const playTranslatingText = () => {
+    // const language = getLanguageById(currentLanguage);
+    const utterance = new SpeechSynthesisUtterance(translatingText);
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+  };
+
+  const playTranslatedText = () => {
+    // const language = getLanguageById(currentLanguage);
+    const utterance = new SpeechSynthesisUtterance(translatedText);
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+  };
+
+  useEffect(() => {}, []);
+
   const values = {
     translatingText,
     translatedText,
@@ -50,6 +68,8 @@ export const TranslateProvider = ({ children }: TranslateProviderProps) => {
     updateCurrentLanguage,
     updateTargetLanguage,
     updateCurrentText,
+    playTranslatingText,
+    playTranslatedText,
   };
 
   return (

@@ -11,6 +11,7 @@ export const Translator = () => {
     updateCurrentLanguage,
     translatingText,
     updateCurrentText,
+    playTranslatingText,
   } = useTranslate();
 
   const handleCopy = () =>
@@ -26,7 +27,11 @@ export const Translator = () => {
         updateLanguage={updateCurrentLanguage}
       />
       <Text value={translatingText} onChangeValue={updateCurrentText} />
-      <Controls withTranslate onCopy={handleCopy} />
+      <Controls
+        withTranslate
+        onCopy={handleCopy}
+        onPlay={playTranslatingText}
+      />
     </CardLayout>
   );
 };
